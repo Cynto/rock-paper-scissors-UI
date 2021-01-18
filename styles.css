@@ -1,0 +1,73 @@
+body {
+    
+    padding: 0;
+    margin: 0;
+}
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+#choice {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    
+    align-items: flex-end;
+}
+#choice button {
+    background: #b5b8bd;
+    height: 60%;
+    width: 33.3333333333333333333%;
+    font-size: 50px;
+    cursor: pointer;
+}
+#choice button:hover {
+ background: #949699;
+ font-size: 60px;
+}
+
+
+
+
+#score {
+    display: flex;
+    height: 30%;
+    justify-self: flex-end;
+    align-self: flex-end;
+    width: 100%;
+    border-bottom: 5px black solid;
+}
+#player-score {
+    display: flex;
+    
+    text-align: center;
+    width: 50%;
+    border-right: 5px black solid;
+}
+#player-score #number {
+    height: 10px;
+    justify-self: center;
+    text-align: center;
+    
+}
+#computer-score {
+    text-align: center;
+    width: 50%;
+   
+}
+
+#playerScoreText {
+    font-size: 120px;
+    
+}
+#computerScoreText {
+    font-size: 120px;
+}
+
+
+
+

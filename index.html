@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="container">
+            <h1 id="pick"></h1>
+            <div id="choice">
+                <button class="choice" id="rock">Rock</button>
+                <button class="choice" id="paper">Paper</button>
+                <button class="choice" id ="scissors">Scissors</button>
+                <h1 id="pick"></h1>
+                
+            </div>
+            <div id="score">
+                <div id="player-score">
+                    <h1 id="number">
+                        Player Score:
+                    </h1>
+                    <h1 id="playerScoreText"></h1>
+                </div>
+                <div id="computer-score">
+                    <h1>Computer Score:</h1>
+                    <h1 id ="computerScoreText"></h1>
+                </div>
+            </div>
+        </div>
+       
+        <script>
+            function computerPlay() { //Function randomly returns rock, paper or scissors
+                let computerOptions = ["Rock", "Paper", "Scissors"];
+
+                let computerChosen = computerOptions[Math.floor(Math.random()*computerOptions.length)] //randomly picks an element from the array
+                return computerChosen;
+
+            }
+            const computerSelection = '';
+            let playerScore = 0;
+            let computerScore = 0;
+            
+            function playRound(computerSelection, playerSelection) { //This function checks whether the player or computer had the winning move
+                playerSelection = playerSelection.toLowerCase(); //changes player's input to lowercase, so it doesn't matter whether or not the player entered a lower or higher case word
+                console.log(`You chose ${playerSelection}.`)
+                console.log(`The computer chose ${computerSelection}.`);
+                
+                if(computerSelection == "rock" && playerSelection == "paper") { 
+                    return "You win! Paper beats Rock."
+                }
+                else if(computerSelection == "paper" && playerSelection == "rock" ) {
+                    return "You lose! Paper beats Rock."
+                }
+                else if(computerSelection == "scissors" && playerSelection == "rock" ) {
+                    return "You win! Rock beats Scissors."
+                }
+                else if(computerSelection == "rock" && playerSelection == "scissors" ) {
+                    return "You lose! Rock beats Scissors."
+                }
+                else if(computerSelection == "scissors" && playerSelection == "paper" ) {
+                    return "You lose! Scissors beats Paper."
+                }
+                else if(computerSelection == "paper" && playerSelection == "scissors" ) {
+                    return "You win! Scissors beats Paper."
+                }
+
+                else  {
+                    return "It's a Draw!"
+                }
+                
+                
+
+            }
+            let pick = document.getElementById("pick");
+            let playerScoreText = document.getElementById("playerScoreText");
+            let computerScoreText = document.getElementById("computerScoreText");
+            let divPlayerScore = document.getElementById("player-score");
+            let divComputerScore = document.getElementById("computer-score")
+
+
+
+            playerScoreText.textContent = 0;
+            computerScoreText.textContent = 0;
+
+
+            const choice = document.querySelectorAll('.choice');
+            document.getElementById("rock").addEventListener("click", function playRound2() {
+                
+                for(i = 0; i < 5; i++) {
+                    if(computerScore < 5 && playerScore < 5) {
+                        const computerSelection = computerPlay().toLowerCase();
+                        whoWon = playRound(computerSelection, "rock");
+                        console.log(whoWon)
+                        if(whoWon.includes("win") == true) {
+                            playerScore++
+                            pick.textContent = "You win this round!";
+                            playerScoreText.textContent = `${playerScore}`;
+                        }
+                        else if(whoWon.includes("lose")){
+                            computerScore++
+                            pick.textContent = `The computer chose ${computerSelection} which beats your rock!`;
+                            computerScoreText.textContent = `${computerScore}`;
+                        }
+                        else {
+                            pick.textContent = "You both chose rock! It's a tie"
+                        }
+                        return playerScore;
+                }
+                else {
+                
+                    if(playerScore == 5) {
+                        pick.textContent = "Congratulations, you won the match!";
+                        divPlayerScore.setAttribute('style', 'background: #dbbe79');
+                    }
+                    else if(computerScore == 5) {
+                        pick.textContent = "Sadly, the computer beat you! Better luck next time.";
+                    }
+                    return playerScore;
+                }
+                }
+
+               
+            });
+            document.getElementById("paper").addEventListener("click", function playRound2() {
+                
+                for(i = 0; i < 5; i++) {
+                    if(computerScore < 5 && playerScore < 5) {
+                        const computerSelection = computerPlay().toLowerCase();
+                        whoWon = playRound(computerSelection, "paper");
+                        console.log(whoWon)
+                        if(whoWon.includes("win") == true) {
+                            playerScore++
+                            pick.textContent = "You win this round!";
+                            playerScoreText.textContent = `${playerScore}`;
+                        }
+                        else if(whoWon.includes("lose")){
+                            computerScore++
+                            
+                            pick.textContent = `The computer chose ${computerSelection} which beats your paper!`;
+                            computerScoreText.textContent = `${computerScore}`;
+                        }
+                        else {
+                            pick.textContent = "You both chose paper! It's a tie"
+                        }
+                        return playerScore;
+                }
+                else {
+                
+                    if(playerScore == 5) {
+                        pick.textContent = "Congratulations, you won the match!"
+                    }
+                    else if(computerScore == 5) {
+                        pick.textContent = "Sadly, the computer beat you! Better luck next time."
+                    }
+                    return playerScore;
+                }
+                }
+
+               
+            });
+            document.getElementById("scissors").addEventListener("click", function playRound2() {
+                
+
+                for(i = 0; i < 5; i++) {
+                    if(computerScore < 5 && playerScore < 5) {
+                        const computerSelection = computerPlay().toLowerCase();
+                        whoWon = playRound(computerSelection, "scissors");
+                        console.log(whoWon)
+                        if(whoWon.includes("win") == true) {
+                            playerScore++
+                            pick.textContent = `You chose scissors which beats ${computerSelection}`;
+                            playerScoreText.textContent = `${playerScore}`;
+                        }
+                        else if(whoWon.includes("lose")){
+                            computerScore++
+                            pick.textContent = `The computer chose ${computerSelection} which beats your scissors!`;
+                            computerScoreText.textContent = `${computerScore}`;
+                        }
+                        else {
+                            pick.textContent = "You both chose scissors! It's a tie"
+                        }
+                        return playerScore;
+                }
+                else {
+                
+                    if(playerScore == 5) {
+                        pick.textContent = "Congratulations, you won the match!"
+                    }
+                    else if(computerScore == 5) {
+                        pick.textContent = "Sadly, the computer beat you! Better luck next time."
+                    }
+                    return playerScore;
+                }
+                }
+
+               
+            });
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
